@@ -44,14 +44,6 @@
 
 <script>
     // =========================
-    // TEST-KOORDINATEN
-    // =========================
-    const position = {
-        lat: 269.171023,
-        lon: -264.107802
-    };
-
-    // =========================
     // SPIELKOORDINATEN-GRENZEN
     // =========================
     const LAT_MIN = 0;
@@ -63,11 +55,10 @@
     const mapImg = document.getElementById("map");
     const marker = document.getElementById("marker");
 
-    mapImg.onload = () => {
+    function updateMarker(position) {
         const mapWidth  = mapImg.clientWidth;
         const mapHeight = mapImg.clientHeight;
 
-        // Koordinate → Pixel
         const x = (position.lon - LON_MIN) / (LON_MAX - LON_MIN) * mapWidth;
         const y = mapHeight - (
             (position.lat - LAT_MIN) / (LAT_MAX - LAT_MIN) * mapHeight
@@ -75,6 +66,21 @@
 
         marker.style.left = `${x}px`;
         marker.style.top  = `${y}px`;
+    }
+
+    async function loadPosition() {
+        try {
+            const response = await fetch("position.json", { cache: "no-store" });
+            const data = await response.json();
+            updateMarker(data);
+        } catch (err) {
+            console.error("Position konnte nicht geladen werden", err);
+        }
+    }
+
+    mapImg.onload = () => {
+        loadPosition();
+        setInterval(loadPosition, 2000); // alle 2 Sekunden aktualisieren
     };
 </script>
 
