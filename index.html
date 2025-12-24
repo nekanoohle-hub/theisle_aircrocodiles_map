@@ -2,10 +2,164 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Spielkarte</title>
+    <title>The Isle – Live Map</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #map-container {
+            position: relative;
+        }
+
+        #map {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #marker {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+        }
+    </style>
 </head>
 <body>
-    <h1>GitHub Pages funktioniert 🎉</h1>
-    <p>Das ist meine erste Online-Seite.</p>
+
+<div id="map-container">
+    <img id="map" src="<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>The Isle – Live Map</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #map-container {
+            position: relative;
+        }
+
+        #map {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #marker {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div id="map-container">
+    <img id="map" src="map.png" alt="Spielkarte">
+    <div id="marker"></div>
+</div>
+
+<script>
+    // =========================
+    // TEST-KOORDINATEN
+    // =========================
+    const position = {
+        lat: 369.171023,
+        lon: -364.107802
+    };
+
+    // =========================
+    // SPIELKOORDINATEN-GRENZEN
+    // (MUSST du anpassen!)
+    // =========================
+    const LAT_MIN = 0;
+    const LAT_MAX = 500;
+
+    const LON_MIN = -500;
+    const LON_MAX = 0;
+
+    const mapImg = document.getElementById("map");
+    const marker = document.getElementById("marker");
+
+    mapImg.onload = () => {
+        const mapWidth  = mapImg.clientWidth;
+        const mapHeight = mapImg.clientHeight;
+
+        // Koordinate → Pixel
+        const x = (position.lon - LON_MIN) / (LON_MAX - LON_MIN) * mapWidth;
+        const y = mapHeight - (
+            (position.lat - LAT_MIN) / (LAT_MAX - LAT_MIN) * mapHeight
+        );
+
+        marker.style.left = `${x}px`;
+        marker.style.top  = `${y}px`;
+    };
+</script>
+
+</body>
+</html>
+" alt="Spielkarte">
+    <div id="marker"></div>
+</div>
+
+<script>
+    // =========================
+    // TEST-KOORDINATEN
+    // =========================
+    const position = {
+        lat: 369.171023,
+        lon: -364.107802
+    };
+
+    // =========================
+    // SPIELKOORDINATEN-GRENZEN
+    // =========================
+    const LAT_MIN = 0;
+    const LAT_MAX = 500;
+
+    const LON_MIN = -500;
+    const LON_MAX = 0;
+
+    const mapImg = document.getElementById("map");
+    const marker = document.getElementById("marker");
+
+    mapImg.onload = () => {
+        const mapWidth  = mapImg.clientWidth;
+        const mapHeight = mapImg.clientHeight;
+
+        // Koordinate → Pixel
+        const x = (position.lon - LON_MIN) / (LON_MAX - LON_MIN) * mapWidth;
+        const y = mapHeight - (
+            (position.lat - LAT_MIN) / (LAT_MAX - LAT_MIN) * mapHeight
+        );
+
+        marker.style.left = `${x}px`;
+        marker.style.top  = `${y}px`;
+    };
+</script>
+
 </body>
 </html>
